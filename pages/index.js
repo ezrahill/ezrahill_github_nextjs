@@ -1,8 +1,14 @@
-import { Box, Button, Center, Code, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, HStack, Heading, Image, ListItem, OrderedList, Spacer, Text, Tooltip, UnorderedList, VStack, useColorMode } from "@chakra-ui/react"
-// import NavBar from '../components/navbar'
+import { Box, Button, Center, Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, HStack, Heading, Image, ListItem, OrderedList, Spacer, Text, Tooltip, UnorderedList, VStack, useColorMode, useDisclosure } from "@chakra-ui/react"
+import React from "react"
+import { CloseIcon } from "@chakra-ui/icons"
+import ExpAws from '../components/aws'
+import ExpVmware from '../components/vmware'
 // import { Link } from '@chakra-ui/next-js'
 
 export default function HomePage() {
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const finalRef = React.useRef(null)
+
     return (
         <Box>
             <VStack>
@@ -24,6 +30,12 @@ export default function HomePage() {
                     </Text>
                 </Box>
             </Center>
+            <Center><VStack><Heading sx={{ "padding": "10px", "fontSize": 30, "fontWeight": "600", "color": "#6b9080" }}>{`Experience`}</Heading>
+                <HStack sx={{ "padding": "10px" }}>
+                    <ExpAws></ExpAws>
+                    <ExpVmware></ExpVmware>
+                </HStack>
+            </VStack></Center>
         </Box>
     )
 }
