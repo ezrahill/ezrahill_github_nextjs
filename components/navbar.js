@@ -1,41 +1,51 @@
-import { Box, Button, Center, Code, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, HStack, Heading, Image, Link, ListItem, OrderedList, Spacer, Text, Tooltip, UnorderedList, VStack, useColorMode } from "@chakra-ui/react"
-import NextLink from "next/link"
+import {
+    Box,
+    Button,
+    HStack,
+    Image,
+    Link,
+    Spacer,
+    Tooltip,
+    useColorMode,
+} from "@chakra-ui/react";
+
+import {CloseIcon, MoonIcon} from "@chakra-ui/icons"
 
 export default function NavBar(props) {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode, toggleColorMode } = useColorMode();
 
     return (
-        <Box sx={{ "top": "0px", "position": "sticky", "backgroundColor": "rgba(0, 0, 0, 0.2)", "backdropFilter": "blur(4px)", "boxShadow": "rgba(0, 0, 0, 0.1) 0px 10px 13px", "zIndex": 99 }}>
-            <HStack sx={{ "padding": "6px" }}>
+        <Box
+            sx={{
+                top: "0px",
+                position: "sticky",
+                backgroundColor: "rgba(0, 0, 0, 0.2)",
+                backdropFilter: "blur(4px)",
+                boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 13px",
+                zIndex: 99,
+            }}
+        >
+            <HStack sx={{ padding: "6px" }}>
                 <Spacer />
-                <Box sx={{ "display": ["none", "block", "block", "block"] }}>
+                <Box sx={{ display: ["none", "block", "block", "block"] }}>
                     <HStack>
-                        <NextLink
-                            passHref={true}
-                            href="https://github.com/ezrahill">
-                            <Link isExternal={true}>
-                                <Tooltip
-                                    label="My GitHub profile"
-                                    hasArrow={true}>
-                                    <Button sx={{ "_hover": { "opacity": 0.85 }, "bg": "#6b9080" }}>
-                                        <Image src="/github.png" sx={{ "height": "1.5em" }} />
-                                    </Button>
-                                </Tooltip>
-                            </Link>
-                        </NextLink>
+                        <Link isExternal={true} href="https://github.com/ezrahill">
+                            <Tooltip label="My GitHub profile" hasArrow={true}>
+                                <Button sx={{ _hover: { opacity: 0.85 }, bg: "#6b9080" }}>
+                                    <Image src="/github.png" sx={{ height: "1.5em" }} />
+                                </Button>
+                            </Tooltip>
+                        </Link>
                     </HStack>
                 </Box>
-                <Box sx={{ "display": ["block", "none", "none", "none"] }}>
-                    <HStack sx={{ "fontSize": "110%", "padding": "2px" }}>
-                        <NextLink
-                            passHref={true}
-                            href="https://github.com/ezrahill">
-                            <Link isExternal={true}>{`Github`}</Link>
-                        </NextLink>
+                <Box sx={{ display: ["block", "none", "none", "none"] }}>
+                    <HStack sx={{ fontSize: "110%", padding: "2px" }}>
+                        <Link isExternal={true} href="https://github.com/ezrahill">{`Github`}</Link>
                     </HStack>
                 </Box>
-                <Button onClick={toggleColorMode}>
-                    Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
+                <Button onClick={toggleColorMode}
+                    // Toggle {colorMode === "light" ? "Dark" : "Light"}
+                    sx={{"bg": "#6b9080"}}><MoonIcon/>
                 </Button>
             </HStack>
         </Box>
