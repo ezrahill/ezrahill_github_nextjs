@@ -13,7 +13,7 @@ export default function Footer() {
     }
 
     return (
-        <Center>
+        <Center padding={10}>
             <HStack sx={{ fontSize: "80%", padding: "20px" }}>
                 <Link isExternal={true} href='https://dev.to/ezrahill'>
                     <HStack>

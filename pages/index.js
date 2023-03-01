@@ -3,6 +3,8 @@ import React from "react"
 import { CloseIcon } from "@chakra-ui/icons"
 import ExpAws from '../components/aws'
 import ExpVmware from '../components/vmware'
+import ExpPython from "../components/python"
+import Certifications from '../components/certs'
 // import { Link } from '@chakra-ui/next-js'
 
 export default function HomePage() {
@@ -17,7 +19,7 @@ export default function HomePage() {
                         src="/ezrahill.jpeg"
                         sx={{ "width": "7em", "borderRadius": "70px 70px", "border": "1px solid #555", "boxShadow": "xl" }} />
                     <VStack alignItems="start" sx={{ "padding": "10px" }}>
-                        <Heading sx={{ "fontSize": "3em", "fontWeight": "600", "color": "#6b9080" }}>{`Ezra Hill`}</Heading>
+                        <Heading sx={{ "fontSize": "3em", "fontWeight": "600", "color": "#5d7000" }}>{`Ezra Hill`}</Heading>
                         <Text sx={{ "fontSize": "22", "fontWeight": "500" }}>{`Lead DevOps Engineer`}</Text>
                     </VStack>
                 </HStack>
@@ -30,12 +32,17 @@ export default function HomePage() {
                     </Text>
                 </Box>
             </Center>
-            <Center><VStack><Heading sx={{ "padding": "10px", "fontSize": 30, "fontWeight": "600", "color": "#6b9080" }}>{`Experience`}</Heading>
-                <HStack sx={{ "padding": "10px" }}>
+            <Center><VStack><Heading sx={{ "padding": "10px", "fontSize": 30, "fontWeight": "600", "color": "#5d7000" }}>{`Experience`}</Heading>
+                <HStack padding={8}>
                     <ExpAws></ExpAws>
                     <ExpVmware></ExpVmware>
+                    <ExpPython></ExpPython>
                 </HStack>
             </VStack></Center>
+            <Center padding={8}><Heading sx={{ "padding": "10px", "fontSize": 30, "fontWeight": "600", "color": "#5d7000" }}>{`Certifications`}</Heading>
+                    
+            </Center>
+            <Certifications></Certifications>
         </Box>
     )
 }

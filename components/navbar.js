@@ -19,7 +19,7 @@ export default function NavBar(props) {
             sx={{
                 top: "0px",
                 position: "sticky",
-                backgroundColor: "rgba(0, 0, 0, 0.2)",
+                backgroundColor: "rgba(213, 213, 213, 0.5)",
                 backdropFilter: "blur(4px)",
                 boxShadow: "rgba(0, 0, 0, 0.1) 0px 10px 13px",
                 zIndex: 99,
@@ -31,7 +31,7 @@ export default function NavBar(props) {
                     <HStack>
                         <Link isExternal={true} href="https://github.com/ezrahill">
                             <Tooltip label="My GitHub profile" hasArrow={true}>
-                                <Button sx={{ _hover: { opacity: 0.85 }, bg: "#6b9080" }}>
+                                <Button sx={{ _hover: { opacity: 0.85 }, bg: "#d5d5d5" }}>
                                     <Image src="/github.png" sx={{ height: "1.5em" }} />
                                 </Button>
                             </Tooltip>
@@ -45,7 +45,7 @@ export default function NavBar(props) {
                 </Box>
                 <Button onClick={toggleColorMode}
                     // Toggle {colorMode === "light" ? "Dark" : "Light"}
-                    sx={{"bg": "#6b9080"}}><MoonIcon/>
+                    sx={{"bg": "#d5d5d5"}}><MoonIcon/>
                 </Button>
             </HStack>
         </Box>
