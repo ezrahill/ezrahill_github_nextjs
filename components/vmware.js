@@ -1,4 +1,4 @@
-import { Box, Button, Center, Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, HStack, Heading, Image, Link, ListItem, OrderedList, Spacer, Text, Tooltip, UnorderedList, VStack, useColorMode, useDisclosure } from "@chakra-ui/react"
+import { Box, Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Image, Link, ListItem, OrderedList, Spacer, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
 import React from "react"
 import { CloseIcon } from "@chakra-ui/icons"
 import ReactMarkdown from "react-markdown"
@@ -40,10 +40,14 @@ export default function ExpVmware() {
                 </ModalContent></ModalOverlay>
             </Modal>
             <Spacer />
-            <Image align="center"
-                src="/image/vmware.png"
-                onClick={onOpen}
-                sx={{ "height": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
+            <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
+                <Box p='6'>
+                    <Image align="center"
+                        src="/image/vmware.png"
+                        onClick={onOpen}
+                        sx={{ "width": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
+                </Box>
+            </Box>
         </div>
     )
 }
