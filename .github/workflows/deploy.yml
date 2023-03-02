@@ -1,0 +1,34 @@
+name: Publish to GitHub Pages
+on: [ push, pull_request ]
+
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "19"
+          cache: "npm"
+          cache-dependency-path: ./package-lock.json
+
+      - name: Install Packages
+        run: npm install
+
+      - name: Build Assets
+        run: |
+          npm build
+          npm export
+
+      - name: Deploy to GitHub Pages Repo
+        uses: tagus/git-deploy@v0.4.1
+        with:
+          changes: out
+          repository: git@github.com:ezrahill/ezrahill.github.io.git
+          ssh_key: ${{ secrets.REPO_DEPLOY_KEY }}
+          name: Ezra Hill
+          email: ${{ secrets.EMAIL }}
+          clean_repo: true
