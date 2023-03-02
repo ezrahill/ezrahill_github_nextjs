@@ -20,15 +20,22 @@ export default function ExpPython() {
                             remarkPlugins={[remarkMath, remarkGfm]}
                             rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
 **Experience** 
-- I have used Python to build multiple solutions
-    - Interact with APIs
-    - AWS Lambda Functions
+- APIs
+    - Creation
+    - Interacting with 3rd Party APIs
+- Automating tasks
     - Auditing and Reporting
-    - AWS Boto3
-    - Pandas
-    - Jira and COnfluence
-    - Data Manipulation
     - Documentation
+    - Data manipulation
+    - Reduce manual effort
+- Infrastructure as Code
+    - AWS Boto3
+    - AWS Lambda functions
+    - Cisco UCS Director
+- Data analysis
+    - Data structures using Pandas
+    - Logs
+    - Metrics
 `}</ReactMarkdown>
                     </ModalBody>
                     <ModalFooter><CloseIcon onClick={onClose} /></ModalFooter>
@@ -36,9 +43,9 @@ export default function ExpPython() {
             </Modal>
             <Spacer />
             <Image align="center"
-                src="/python.png"
+                src="/image/python.png"
                 onClick={onOpen}
-                sx={{ "width": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
+                sx={{ "height": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
         </div>
     )
 }

@@ -41,9 +41,9 @@ export default function ExpVmware() {
             </Modal>
             <Spacer />
             <Image align="center"
-                src="/vmware.png"
+                src="/image/vmware.png"
                 onClick={onOpen}
-                sx={{ "width": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
+                sx={{ "height": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
         </div>
     )
 }

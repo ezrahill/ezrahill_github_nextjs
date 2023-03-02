@@ -19,18 +19,26 @@ export default function ExpAws() {
                         <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
                             remarkPlugins={[remarkMath, remarkGfm]}
                             rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience** 
-- Built multiple solutions using the following AWS services
-    - Storage gateway
-    - S3
-    - VPC
-    - EC2
-    - Lambda
-    - API Gateway
-    - SQS, SNS
-    - CloudWatch, EventBridge
-    - DataSync
+**Experience**
+- Compute
+    - EC2, Lambda, ECS
+    - VMware Cloud on AWS
+- Storage
+    - Storage Gateway, S3, EFS
     - FSx for Windows and ONTAP
+    - DataSync
+- Security and Identity
+    - CloudHSM, IAM
+    - Secrets Manager
+- Networking
+    - VPC, API Gateway
+    - CloudFront, Route 53
+    - Transit Gateway
+- Application Integration
+    - SQS, SNS, EventBridge
+- Management
+    - CloudWatch
+    - SystemsMagager
 
 **Certifications** 
 - AWS Certified Cloud Practitioner
@@ -43,9 +51,9 @@ export default function ExpAws() {
             </Modal>
             <Spacer />
             <Image align="center"
-                src="/aws.png"
+                src="/image/aws.png"
                 onClick={onOpen}
-                sx={{ "width": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
+                sx={{ "height": "6em", "boxShadow": "xl", "_hover": { "cursor": "pointer" } }} />
         </div>
     )
 }

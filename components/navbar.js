@@ -32,7 +32,7 @@ export default function NavBar(props) {
                         <Link isExternal={true} href="https://github.com/ezrahill">
                             <Tooltip label="My GitHub profile" hasArrow={true}>
                                 <Button sx={{ _hover: { opacity: 0.85 }, bg: "#d5d5d5" }}>
-                                    <Image src="/github.png" sx={{ height: "1.5em" }} />
+                                    <Image src="/image/github.png" sx={{ height: "1.5em" }} />
                                 </Button>
                             </Tooltip>
                         </Link>
