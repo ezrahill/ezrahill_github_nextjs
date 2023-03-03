@@ -41,7 +41,7 @@ export default function ExpVmware() {
             </Modal>
             <Spacer />
             <Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                <Box p='2'>
+                <Box p='2' align={'center'}>
                     <Image align="center"
                         src="/image/vmware.png"
                         onClick={onOpen}

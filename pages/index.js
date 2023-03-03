@@ -36,7 +36,7 @@ export default function HomePage() {
                 <Heading sx={{ "padding": "10px", "fontSize": 30, "fontWeight": "600", "color": "#5d7000" }}>{`Experience`}</Heading>
             </Center>
             <Center>
-                <SimpleGrid padding={8} minChildWidth={'120px'} minWidth={'240px'} maxWidth={'650px'} spacing={5}>
+                <SimpleGrid padding={8} minChildWidth={'120px'} minWidth={'240px'} maxWidth={'650px'} spacing={5} alignItems={'center'}>
                     <ExpAws></ExpAws>
                     <ExpPython></ExpPython>
                     <ExpVmware></ExpVmware>
