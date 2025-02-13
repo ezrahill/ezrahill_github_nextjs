@@ -19,7 +19,7 @@ export default function ExpPython() {
                         <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
                             remarkPlugins={[remarkMath, remarkGfm]}
                             rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience** 
+**Experience**
 - APIs
     - Creation
     - Interacting with 3rd Party APIs
@@ -38,7 +38,7 @@ export default function ExpPython() {
     - Metrics
 `}</ReactMarkdown>
                     </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} /></ModalFooter>
+                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
                 </ModalContent></ModalOverlay>
             </Modal>
             <Spacer />

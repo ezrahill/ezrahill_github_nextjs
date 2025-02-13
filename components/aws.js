@@ -40,13 +40,13 @@ export default function ExpAws() {
     - CloudWatch
     - SystemsMagager
 
-**Certifications** 
+**Certifications**
 - AWS Certified Cloud Practitioner
 - AWS Certified Solutions Architect – Associate
 - AWS Certified Developer – Associate
 `}</ReactMarkdown>
                     </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} /></ModalFooter>
+                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
                 </ModalContent></ModalOverlay>
             </Modal>
             <Spacer />

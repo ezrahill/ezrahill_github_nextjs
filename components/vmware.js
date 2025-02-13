@@ -33,10 +33,10 @@ export default function ExpVmware() {
 - VMware Certified Professional: Data Center Virtualization 4/5/6 and 2019
 - VMware Certified Professional: Network Virtualization 6
 - VMware Certified Implementation Expert: Data Center Virtualization 6
-- VMware Cloud on AWS - Trained Professional 
+- VMware Cloud on AWS - Trained Professional
 `}</ReactMarkdown>
                     </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} /></ModalFooter>
+                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
                 </ModalContent></ModalOverlay>
             </Modal>
             <Spacer />
