@@ -23,7 +23,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint --max-warnings=0 \"{components,pages,styles,utils}/**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
     "eslint": "9.20.1",

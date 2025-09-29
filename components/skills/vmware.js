@@ -1,45 +1,56 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpVmware() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "Data Center Virtualisation",
+            items: [
+                "vSphere architecture from SMB to multi-site enterprise",
+                "vCenter, ESXi, and lifecycle management",
+                "Storage integration with vSAN and third-party arrays",
+            ],
+        },
+        {
+            title: "Cloud & Automation",
+            items: [
+                "VMware Cloud on AWS migrations",
+                "Infrastructure automation with PowerCLI and Terraform",
+                "Integration with ServiceNow and self-service portals",
+            ],
+        },
+        {
+            title: "Operations & Resilience",
+            items: [
+                "vRealize Operations dashboards and capacity planning",
+                "Log Insight pipelines for proactive monitoring",
+                "Site Recovery Manager for DR orchestration",
+            ],
+        },
+    ]
+
+    const certifications = [
+        "VCP-DCV (4/5/6/2019)",
+        "VCP-NV 6",
+        "VCIX-DCV 6",
+        "VMware Cloud on AWS – Trained Professional",
+    ]
+
     return (
         <div id="vmware">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='vmware' size={'2xl'}>
-                <ModalOverlay id="vmware"><ModalContent>
-                    <ModalHeader id="vmware">{`VMware`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- Designed and installed many solutions ranging from small deployments to large multi-site implementation.
-- vSphere
-    - Replication
-    - vCenter
-    - ESXi
-- vRealize Operations
-- vRealize LogInsight
-- Site Recovery Manager
-
-**Certifications**
-- VMware Certified Professional: Data Center Virtualization 4/5/6 and 2019
-- VMware Certified Professional: Network Virtualization 6
-- VMware Certified Implementation Expert: Data Center Virtualization 6
-- VMware Cloud on AWS - Trained Professional
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="VMware Platform Engineering"
+                subtitle="Enterprise data centre modernisation and hybrid cloud"
+                summary="Design and run VMware estates that balance efficiency, automation, and resilience across on-prem and VMware Cloud on AWS."
+                tags={["Hybrid cloud", "Automation", "Disaster recovery"]}
+                sections={sections}
+                certifications={certifications}
+            />
             <SkillCard
                 imageSrc="vmware.png"
                 altText="VMware"

@@ -1,44 +1,56 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpFastAPI() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "API Craftsmanship",
+            items: [
+                "Async REST APIs with FastAPI and Pydantic",
+                "OpenAPI-first design and client generation",
+                "Auth patterns: OAuth2, JWT, API keys",
+            ],
+        },
+        {
+            title: "Integrations & Data",
+            items: [
+                "SQLAlchemy ORM and alembic migrations",
+                "Redis, PostgreSQL, and event-driven backends",
+                "Background tasks and Celery workers",
+            ],
+        },
+        {
+            title: "Quality Engineering",
+            items: [
+                "pytest suites with async fixtures",
+                "Contract tests and schema validation",
+                "GitHub Actions pipelines with coverage gating",
+            ],
+        },
+        {
+            title: "Deployment & Ops",
+            items: [
+                "Containerised deployments with uvicorn and gunicorn",
+                "Azure Functions & AWS Lambda adapters",
+                "Observability with OpenTelemetry and Prometheus",
+            ],
+        },
+    ]
+
     return (
         <div id="fastapi">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='fastapi' size={'2xl'}>
-                <ModalOverlay id="fastapi"><ModalContent>
-                    <ModalHeader id="fastapi">{`FastAPI & Modern Python`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- API Development
-    - RESTful API design
-    - Async/await patterns
-    - Pydantic data validation
-    - OpenAPI/Swagger documentation
-- Integration & Testing
-    - SQLAlchemy ORM
-    - pytest & test automation
-    - CI/CD with GitHub Actions
-- Production Deployment
-    - Azure Functions integration
-    - Containerized deployments
-    - Performance optimization with uvicorn
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="FastAPI & Modern Python"
+                subtitle="High-performance Python services with production-ready tooling"
+                summary="Ship secure, well-tested Python APIs using FastAPI, async patterns, and automated CI/CD flows tailored for cloud-native deployments."
+                tags={["Async Python", "Contract-first APIs", "CI/CD ready"]}
+                sections={sections}
+            />
             <SkillCard
                 imageSrc="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png"
                 altText="FastAPI"
@@ -48,7 +60,6 @@ export default function ExpFastAPI() {
                 onClick={onOpen}
                 isExternal={true}
             />
-
         </div>
     )
 }

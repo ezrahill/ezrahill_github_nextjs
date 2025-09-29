@@ -1,11 +1,11 @@
-import { createIcon, Icon, Center, chakra, HStack, Link, Text, VStack, Divider, Box } from '@chakra-ui/react'
-import { faDev, faGithubSquare, faLinkedin, faSquareTwitter, faStrava, faWordpress } from '@fortawesome/free-brands-svg-icons'
+import { createIcon, Icon, Center, HStack, Link, Text, VStack, Divider, Box } from '@chakra-ui/react'
+import { faDev, faGithubSquare, faLinkedin, faSquareTwitter, faStrava } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faBlog } from '@fortawesome/free-solid-svg-icons'
 
 export default function Footer() {
 
     const convertIcon = faIcon => {
-        const { icon, iconName } = faIcon;
+        const { icon, iconName } = faIcon
         return createIcon({
             displayName: iconName,
             viewBox: `0 0 ${icon[0]} ${icon[1]}`,

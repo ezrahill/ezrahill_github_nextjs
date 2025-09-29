@@ -1,4 +1,17 @@
-import { Box, Heading, Text, Link, Badge, VStack, HStack, Button, Icon } from "@chakra-ui/react"
+import {
+    Box,
+    Heading,
+    Text,
+    Link,
+    Badge,
+    VStack,
+    HStack,
+    Button,
+    Stack,
+    Wrap,
+    WrapItem,
+    useColorModeValue,
+} from "@chakra-ui/react"
 import { ExternalLinkIcon } from "@chakra-ui/icons"
 
 export default function ProjectCard({
@@ -11,143 +24,132 @@ export default function ProjectCard({
     githubLink = null
 }) {
     const getTypeColor = (type) => {
-        switch(type) {
-            case 'SaaS': return 'purple';
-            case 'Enterprise': return 'blue';
-            case 'Personal': return 'green';
-            case 'Open Source': return 'orange';
-            case 'Platform': return 'teal';
-            default: return 'gray';
+        switch (type) {
+            case 'SaaS': return 'purple'
+            case 'Enterprise': return 'blue'
+            case 'Personal': return 'green'
+            case 'Open Source': return 'orange'
+            case 'Platform': return 'teal'
+            default: return 'gray'
         }
-    };
+    }
 
     const getStatusColor = (status) => {
-        switch(status) {
-            case 'Active': return 'green';
-            case 'In Development': return 'yellow';
-            case 'Completed': return 'blue';
-            case 'Archived': return 'gray';
-            case 'Planned': return 'red';
-            default: return null;
+        switch (status) {
+            case 'Active': return 'green'
+            case 'In Development': return 'yellow'
+            case 'Completed': return 'blue'
+            case 'Archived': return 'gray'
+            case 'Planned': return 'red'
+            default: return null
         }
-    };
+    }
+
+    const cardBg = useColorModeValue("white", "gray.900")
+    const cardHoverBg = useColorModeValue("gray.50", "gray.800")
+    const borderColor = useColorModeValue("gray.200", "gray.700")
+    const textMuted = useColorModeValue("gray.600", "gray.300")
 
     return (
         <Box
-            bg="white"
-            borderWidth='1px'
-            borderColor="gray.200"
-            borderRadius='xl'
-            p={6}
-            shadow="sm"
-            _hover={{
-                shadow: 'lg',
-                transform: 'translateY(-4px)',
-                borderColor: 'brand.500',
-                bg: 'gray.50'
-            }}
-            transition="all 0.3s ease"
+            borderRadius="2xl"
+            borderWidth="1px"
+            borderColor={borderColor}
+            bg={cardBg}
             position="relative"
+            overflow="hidden"
+            transition="all 0.3s ease"
+            _hover={{ transform: "translateY(-6px)", shadow: "2xl", bg: cardHoverBg, borderColor: "brand.200" }}
             _dark={{
-                bg: "gray.800",
-                borderColor: "gray.600",
-                color: "white",
-                _hover: {
-                    bg: "gray.700",
-                    borderColor: "brand.300"
-                }
+                borderColor: "gray.700",
+                _hover: { borderColor: "brand.300", bg: "gray.800" },
             }}
         >
-            <VStack align="start" spacing={4} height="100%">
-                {/* Header */}
-                <HStack justify="space-between" width="100%" align="start">
-                    <VStack align="start" spacing={1} flex={1}>
-                        <Heading size="md" color="gray.800" lineHeight={1.2}>
-                            {name}
-                        </Heading>
-                        <HStack spacing={2}>
+            <Box
+                h="4px"
+                bgGradient="linear(to-r, brand.500, teal.400)"
+                borderTopRadius="2xl"
+            />
+            <VStack align="stretch" spacing={5} p={{ base: 6, md: 7 }}>
+                <VStack align="stretch" spacing={3}>
+                    <HStack spacing={2}>
+                        <Badge
+                            colorScheme={getTypeColor(type)}
+                            borderRadius="full"
+                            px={3}
+                            py={1}
+                            fontSize="xs"
+                        >
+                            {type}
+                        </Badge>
+                        {status && (
                             <Badge
-                                colorScheme={getTypeColor(type)}
-                                variant="solid"
+                                colorScheme={getStatusColor(status)}
+                                variant="subtle"
                                 borderRadius="full"
                                 px={3}
                                 py={1}
                                 fontSize="xs"
                             >
-                                {type}
+                                {status}
                             </Badge>
-                            {status && (
+                        )}
+                    </HStack>
+                    <Heading size="md" lineHeight={1.3}>
+                        {name}
+                    </Heading>
+                    <Text fontSize="sm" color={textMuted} lineHeight={1.7}>
+                        {description}
+                    </Text>
+                </VStack>
+
+                {tech.length > 0 && (
+                    <Wrap spacing={2}>
+                        {tech.map((techItem) => (
+                            <WrapItem key={techItem}>
                                 <Badge
-                                    colorScheme={getStatusColor(status)}
-                                    variant="outline"
-                                    borderRadius="full"
-                                    px={3}
-                                    py={1}
+                                    variant="subtle"
+                                    colorScheme="gray"
                                     fontSize="xs"
+                                    borderRadius="md"
+                                    px={2.5}
+                                    py={1}
                                 >
-                                    {status}
+                                    {techItem}
                                 </Badge>
-                            )}
-                        </HStack>
-                    </VStack>
-                </HStack>
+                            </WrapItem>
+                        ))}
+                    </Wrap>
+                )}
 
-                {/* Description */}
-                <Text
-                    fontSize="sm"
-                    color="gray.600"
-                    lineHeight={1.6}
-                    flex={1}
-                >
-                    {description}
-                </Text>
-
-                {/* Tech Stack */}
-                <HStack wrap="wrap" spacing={2} width="100%">
-                    {tech.map((techItem, techIndex) => (
-                        <Badge
-                            key={techIndex}
-                            variant="subtle"
-                            colorScheme="gray"
-                            fontSize="xs"
-                            borderRadius="md"
-                            px={2}
-                            py={1}
-                        >
-                            {techItem}
-                        </Badge>
-                    ))}
-                </HStack>
-
-                {/* Links */}
-                <HStack spacing={3} width="100%" pt={2}>
+                <Stack direction={{ base: "column", sm: "row" }} spacing={3} pt={2}>
                     {link && link !== "#" && (
-                        <Link href={link} isExternal>
-                            <Button
-                                size="sm"
-                                colorScheme="blue"
-                                variant="outline"
-                                rightIcon={<ExternalLinkIcon />}
-                                _hover={{ bg: 'blue.50' }}
-                            >
-                                View Project
-                            </Button>
-                        </Link>
+                        <Button
+                            as={Link}
+                            href={link}
+                            isExternal
+                            size="sm"
+                            variant="solid"
+                            colorScheme="brand"
+                            rightIcon={<ExternalLinkIcon />}
+                        >
+                            View Project
+                        </Button>
                     )}
                     {githubLink && (
-                        <Link href={githubLink} isExternal>
-                            <Button
-                                size="sm"
-                                variant="ghost"
-                                rightIcon={<ExternalLinkIcon />}
-                                _hover={{ bg: 'gray.100' }}
-                            >
-                                GitHub
-                            </Button>
-                        </Link>
+                        <Button
+                            as={Link}
+                            href={githubLink}
+                            isExternal
+                            size="sm"
+                            variant="ghost"
+                            rightIcon={<ExternalLinkIcon />}
+                        >
+                            GitHub
+                        </Button>
                     )}
-                </HStack>
+                </Stack>
             </VStack>
         </Box>
-    );
+    )
 }

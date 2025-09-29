@@ -2,14 +2,13 @@
 
 import { ColorModeScript } from '@chakra-ui/react'
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
-import theme from "/utils/theme";
+import theme from "/utils/theme"
 
 export default class Document extends NextDocument {
     render() {
         return (
             <Html lang='en-GB'>
                 <Head>
-                    <title>Ezra Hill - Principal DevOps Engineer | Cloud Infrastructure | Platform Engineering</title>
                     <meta name="description" content="Principal DevOps Engineer with 25+ years in tech. Specialising in AWS, Azure, Kubernetes, and saving companies millions through smart platform architecture and cost optimisation. UK-based cycling enthusiast." />
                     <meta name="keywords" content="Principal DevOps Engineer, DevOps, Cloud Infrastructure, Platform Engineering, AWS, Azure, Kubernetes, Docker, Terraform, Ansible, CI/CD, FastAPI, Python, AI Tools, GitHub Copilot, Cost Optimisation, UK, Sheffield" />
                     <meta name="author" content="Ezra Hill" />

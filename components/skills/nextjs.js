@@ -1,45 +1,56 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpNextJS() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "Frontend Architecture",
+            items: [
+                "Next.js 14 App Router and React Server Components",
+                "Component libraries with Chakra UI and Tailwind",
+                "TypeScript-first design systems",
+            ],
+        },
+        {
+            title: "Performance & UX",
+            items: [
+                "Image optimisation and streaming SSR",
+                "Accessibility-first layouts and theming",
+                "Edge rendering and caching strategies",
+            ],
+        },
+        {
+            title: "Data & State",
+            items: [
+                "React Query/TanStack Query for data fetching",
+                "GraphQL and REST integration",
+                "Server Actions and incremental static regeneration",
+            ],
+        },
+        {
+            title: "Ops & Tooling",
+            items: [
+                "CI/CD with linting, type-checking, and preview deploys",
+                "Vercel, Azure Static Web Apps, and Netlify deployments",
+                "Performance budgets and automated lighthouse checks",
+            ],
+        },
+    ]
+
     return (
         <div id="nextjs">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='nextjs' size={'2xl'}>
-                <ModalOverlay id="nextjs"><ModalContent>
-                    <ModalHeader id="nextjs">{`React & Frontend Development`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- Frontend Frameworks
-    - Next.js 14+ App Router
-    - React 18+ with Hooks
-    - TypeScript
-- UI & Styling
-    - Tailwind CSS
-    - Chakra UI
-    - Responsive design
-    - Component libraries
-- State & Data
-    - React Query/TanStack Query
-    - Redux Toolkit
-    - REST & GraphQL APIs
-    - Server-side rendering (SSR/SSG)
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="React & Next.js"
+                subtitle="Modern frontend engineering that pairs performance with polish"
+                summary="Deliver approachable, accessible web experiences powered by Next.js, React 18, and a strong design system mindset."
+                tags={["App Router", "Design systems", "Edge-ready"]}
+                sections={sections}
+            />
             <SkillCard
                 imageSrc="https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_dark_background.png"
                 altText="Next.js"
@@ -49,7 +60,6 @@ export default function ExpNextJS() {
                 onClick={onOpen}
                 isExternal={true}
             />
-
         </div>
     )
 }

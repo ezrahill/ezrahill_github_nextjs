@@ -77,7 +77,7 @@ export const projectsData = [
         type: "Open Source",
         status: "Active"
     },
-];
+]
 
 // You can easily add more projects here, for example:
 // {

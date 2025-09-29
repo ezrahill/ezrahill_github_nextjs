@@ -55,5 +55,5 @@ export default function SkillCard({
                 {subtitle}
             </Text>
         </Box>
-    );
+    )
 }

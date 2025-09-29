@@ -7,12 +7,12 @@ import {
     Spacer,
     Tooltip,
     useColorMode,
-} from "@chakra-ui/react";
+} from "@chakra-ui/react"
 
-import {CloseIcon, MoonIcon, SunIcon} from "@chakra-ui/icons"
+import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
-export default function NavBar(props) {
-    const { colorMode, toggleColorMode } = useColorMode();
+export default function NavBar() {
+    const { colorMode, toggleColorMode } = useColorMode()
 
     return (
         <Box
@@ -37,6 +37,7 @@ export default function NavBar(props) {
                                 >
                                     <Image
                                         src="/image/github.png"
+                                        alt="GitHub logo"
                                         sx={{ height: "1.5em" }}
                                         _dark={{ filter: "brightness(0) invert(1)" }}
                                     />
@@ -62,7 +63,7 @@ export default function NavBar(props) {
                         _hover={{ bg: { base: "gray.200", _dark: "gray.600" } }}
                         color={{ base: "gray.600", _dark: "gray.300" }}
                     >
-                        {colorMode === "light" ? <MoonIcon/> : <SunIcon/>}
+                        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                     </Button>
                 </Tooltip>
             </HStack>

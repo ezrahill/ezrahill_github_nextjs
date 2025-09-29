@@ -1,56 +1,58 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpAI() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "AI Tooling Enablement",
+            items: [
+                "GitHub Copilot rollouts with guardrails",
+                "Claude Code pairing for rapid prototyping",
+                "Custom GPT agents for platform runbooks",
+                "Prompt libraries tailored to engineering teams",
+            ],
+        },
+        {
+            title: "Automation & Ops",
+            items: [
+                "LLM-assisted Terraform and policy generation",
+                "ChatOps workflows for incident response",
+                "Observability summarisation and RCA drafting",
+                "Automated troubleshooting and remediation scripts",
+            ],
+        },
+        {
+            title: "Quality & Governance",
+            items: [
+                "Prompt testing and review checklists",
+                "Secrets hygiene and data residency controls",
+                "Usage analytics and ROI reporting",
+            ],
+        },
+        {
+            title: "Knowledge & Documentation",
+            items: [
+                "Architecture documentation co-authored with LLMs",
+                "Automated release notes and changelog drafting",
+                "Curated knowledge bases and onboarding guides",
+            ],
+        },
+    ]
+
     return (
         <div id="ai">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='ai' size={'2xl'}>
-                <ModalOverlay id="ai"><ModalContent>
-                    <ModalHeader id="ai">{`AI-Powered Development Tools`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- AI Development Tools
-    - GitHub Copilot for code generation
-    - Claude Code for development tasks
-    - Claude for technical documentation
-    - Custom GPT agents for automation
-- Code Generation & Review
-    - Automated code completion
-    - AI-assisted code refactoring
-    - Intelligent error debugging
-    - Documentation generation
-- Infrastructure Automation
-    - AI-powered Terraform generation
-    - Intelligent configuration management
-    - Automated troubleshooting scripts
-    - Smart monitoring and alerting
-- Productivity Enhancement
-    - Custom automation workflows
-    - AI-assisted technical writing
-    - Intelligent log analysis
-    - Automated testing strategies
-- Platform Integration
-    - OpenAI API integration
-    - Claude API for custom tools
-    - LLM-powered DevOps workflows
-    - AI assistant implementations
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="AI-Powered Development"
+                subtitle="Pairing engineers with LLM copilots for velocity and quality"
+                summary="Embed AI assistants across development, operations, and documentation to automate repetitive work while keeping humans in control."
+                tags={["Copilot enablement", "Automation at scale", "Prompt engineering"]}
+                sections={sections}
+            />
             <SkillCard
                 imageSrc="https://cdn-icons-png.flaticon.com/512/8636/8636795.png"
                 altText="Artificial Intelligence"

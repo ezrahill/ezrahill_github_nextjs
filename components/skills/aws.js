@@ -1,55 +1,72 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpAws() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "Compute & Serverless",
+            items: [
+                "EC2 fleets with autoscaling and savings plans",
+                "Lambda event-driven APIs",
+                "ECS/Fargate and container governance",
+                "VMware Cloud on AWS integration",
+            ],
+        },
+        {
+            title: "Storage & Data Protection",
+            items: [
+                "S3 lifecycle, replication, and Glacier tiering",
+                "EFS and FSx (Windows, ONTAP) architectures",
+                "DataSync pipelines and hybrid storage gateways",
+            ],
+        },
+        {
+            title: "Security & Identity",
+            items: [
+                "Landing zone guardrails with Control Tower",
+                "IAM, SSO, and Secrets Manager automation",
+                "CloudHSM integration for sensitive workloads",
+            ],
+        },
+        {
+            title: "Networking & Edge",
+            items: [
+                "Transit Gateway hub-and-spoke design",
+                "API Gateway and PrivateLink services",
+                "CloudFront & Route 53 performance tuning",
+            ],
+        },
+        {
+            title: "Operations & Automation",
+            items: [
+                "Systems Manager runbooks and patching",
+                "CloudWatch observability dashboards",
+                "EventBridge workflows for platform automation",
+            ],
+        },
+    ]
+
+    const certifications = [
+        "AWS Certified Cloud Practitioner",
+        "AWS Certified Solutions Architect – Associate",
+        "AWS Certified Developer – Associate",
+    ]
+
     return (
         <div id="aws">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='aws' size={'2xl'}>
-                <ModalOverlay id="aws"><ModalContent>
-                    <ModalHeader id="aws">{`Amazon Web Services (AWS)`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- Compute
-    - EC2, Lambda, ECS
-    - VMware Cloud on AWS
-- Storage
-    - Storage Gateway, S3, EFS
-    - FSx for Windows and ONTAP
-    - DataSync
-- Security and Identity
-    - CloudHSM, IAM
-    - Secrets Manager
-- Networking
-    - VPC, API Gateway
-    - CloudFront, Route 53
-    - Transit Gateway
-- Application Integration
-    - SQS, SNS, EventBridge
-- Management
-    - CloudWatch
-    - Systems Manager
-
-**Certifications**
-- AWS Certified Cloud Practitioner
-- AWS Certified Solutions Architect – Associate
-- AWS Certified Developer – Associate
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="Amazon Web Services (AWS)"
+                subtitle="Designing resilient, secure, and cost-optimised AWS platforms"
+                summary="Deliver multi-account landing zones, automated governance, and observability so teams can ship faster without compromising reliability or cost."
+                tags={["Landing zone automation", "Cost optimisation", "24/7 operations"]}
+                sections={sections}
+                certifications={certifications}
+            />
             <SkillCard
                 imageSrc="aws.png"
                 altText="Amazon Web Services"
@@ -58,7 +75,6 @@ export default function ExpAws() {
                 hoverColor="orange.400"
                 onClick={onOpen}
             />
-
         </div>
     )
 }

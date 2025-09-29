@@ -1,45 +1,56 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpGitHubActions() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "CI/CD Engineering",
+            items: [
+                "Reusable GitHub Actions with composable workflows",
+                "Matrix builds, caches, and deployment gates",
+                "Migration experience from Jenkins, GitLab, and Azure DevOps",
+            ],
+        },
+        {
+            title: "Infrastructure Automation",
+            items: [
+                "Terraform Cloud/Enterprise pipelines",
+                "Ansible automation platform integrations",
+                "Packer golden images and AMI lifecycle",
+            ],
+        },
+        {
+            title: "Governance & Security",
+            items: [
+                "OIDC federation and secrets management",
+                "Policy-as-code with branch protections",
+                "Dependency scanning and SBOM publishing",
+            ],
+        },
+        {
+            title: "Observability & Feedback",
+            items: [
+                "Prometheus/Grafana and Datadog hooks",
+                "ELK and Azure Monitor telemetry",
+                "ChatOps notifications and deploy summaries",
+            ],
+        },
+    ]
+
     return (
         <div id="githubactions">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='githubactions' size={'2xl'}>
-                <ModalOverlay id="githubactions"><ModalContent>
-                    <ModalHeader id="githubactions">{`CI/CD & DevOps Tools`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- CI/CD Platforms
-    - GitHub Actions & Workflows
-    - Azure DevOps Pipelines
-    - Jenkins & Jenkins X
-    - GitLab CI/CD
-- Automation & IaC
-    - Ansible Automation Platform
-    - Terraform Cloud/Enterprise
-    - Packer image building
-- Monitoring & Observability
-    - Prometheus & Grafana
-    - Datadog APM
-    - ELK Stack
-    - Azure Monitor
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="CI/CD & DevOps Tooling"
+                subtitle="From GitHub Actions to multi-platform automation"
+                summary="Build dependable pipelines with reusable workflows, infrastructure as code, and automated compliance guardrails."
+                tags={["Reusable workflows", "Policy as code", "Observable delivery"]}
+                sections={sections}
+            />
             <SkillCard
                 imageSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
                 altText="CI/CD Tools"
@@ -49,7 +60,6 @@ export default function ExpGitHubActions() {
                 onClick={onOpen}
                 isExternal={true}
             />
-
         </div>
     )
 }

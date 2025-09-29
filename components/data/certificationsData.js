@@ -76,7 +76,7 @@ export const certificationsData = [
         subtitle: "Administrator (CKA)",
         status: "Planned"
     }
-];
+]
 
 // You can easily add more certifications here, for example:
 // {

@@ -1,47 +1,56 @@
-import { Code, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Heading, Link, ListItem, OrderedList, Text, UnorderedList, useDisclosure } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
 import SkillCard from "../ui/SkillCard"
-import React from "react"
-import { CloseIcon } from "@chakra-ui/icons"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkGfm from "remark-gfm"
-import rehypeKatex from "rehype-katex"
-import rehypeRaw from "rehype-raw"
+import SkillModal from "../ui/SkillModal"
 
 export default function ExpPython() {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const finalRef = React.useRef(null)
+
+    const sections = [
+        {
+            title: "APIs & Integrations",
+            items: [
+                "REST and GraphQL clients and services",
+                "External API orchestration with retries and caching",
+                "Authentication flows (OAuth2, JWT, signed requests)",
+            ],
+        },
+        {
+            title: "Automation & Scripting",
+            items: [
+                "Infrastructure housekeeping and reporting",
+                "Config generation for network and cloud platforms",
+                "Process automation with Click and Typer CLIs",
+            ],
+        },
+        {
+            title: "Infrastructure as Code",
+            items: [
+                "AWS boto3 tooling and custom modules",
+                "Lambda functions for event-driven automation",
+                "Cisco UCS Director and hybrid orchestration",
+            ],
+        },
+        {
+            title: "Data & Analytics",
+            items: [
+                "Pandas data pipelines and reporting",
+                "Log enrichment and metrics extraction",
+                "Jupyter notebooks for exploratory analysis",
+            ],
+        },
+    ]
+
     return (
-        <div id="aws">
-            <Modal isOpen={isOpen} finalFocusRef={finalRef} onClose={onClose} id='aws' size={'2xl'}>
-                <ModalOverlay id="aws"><ModalContent>
-                    <ModalHeader id="aws">{`Python`}</ModalHeader>
-                    <ModalBody>
-                        <ReactMarkdown components={{ "h1": ({ node, ...props }) => <Heading size='2xl' {...props} />, "h2": ({ node, ...props }) => <Heading size='xl' {...props} />, "h3": ({ node, ...props }) => <Heading size='lg' {...props} />, "ul": UnorderedList, "ol": OrderedList, "li": ListItem, "p": Text, "a": Link, "code": ({ node, inline, className, children, ...props }) => { const match = (className || '').match(/language-(?<lang>.*)/); return !inline ? (<Prism children={String(children).replace(/ $/, '')} language={match ? match[1] : ''}             {...props} />) : (<Code {...props}>             {children}           </Code>); } }}
-                            remarkPlugins={[remarkMath, remarkGfm]}
-                            rehypePlugins={[rehypeKatex, rehypeRaw]}>{`
-**Experience**
-- APIs
-    - Creation
-    - Interacting with 3rd Party APIs
-- Automating tasks
-    - Auditing and Reporting
-    - Documentation
-    - Data manipulation
-    - Reduce manual effort
-- Infrastructure as Code
-    - AWS Boto3
-    - AWS Lambda functions
-    - Cisco UCS Director
-- Data analysis
-    - Data structures using Pandas
-    - Logs
-    - Metrics
-`}</ReactMarkdown>
-                    </ModalBody>
-                    <ModalFooter><CloseIcon onClick={onClose} sx={{ cursor: 'pointer' }} /></ModalFooter>
-                </ModalContent></ModalOverlay>
-            </Modal>
+        <div id="python">
+            <SkillModal
+                isOpen={isOpen}
+                onClose={onClose}
+                title="Python Engineering"
+                subtitle="Automation, APIs, and data workflows"
+                summary="Use Python to connect services, automate infrastructure, and surface insights that keep platforms humming."
+                tags={["Automation", "APIs", "Data tooling"]}
+                sections={sections}
+            />
             <SkillCard
                 imageSrc="python.png"
                 altText="Python"
