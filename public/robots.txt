@@ -1,0 +1,15 @@
+# Robots.txt for ezrahill.github.io
+User-agent: *
+Allow: /
+
+Sitemap: https://ezrahill.github.io/sitemap.xml
+
+# Allow search engines to crawl everything
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay to be respectful
+Crawl-delay: 1
